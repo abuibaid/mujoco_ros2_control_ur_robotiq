@@ -1,0 +1,289 @@
+controller_manager:
+  ros__parameters:
+    use_sim_time: true
+    update_rate: 500  # Hz
+
+    joint_state_broadcaster:
+      type: joint_state_broadcaster/JointStateBroadcaster
+
+    io_and_status_controller:
+      type: ur_controllers/GPIOController
+
+    speed_scaling_state_broadcaster:
+      type: ur_controllers/SpeedScalingStateBroadcaster
+
+    force_torque_sensor_broadcaster:
+      type: force_torque_sensor_broadcaster/ForceTorqueSensorBroadcaster
+
+    joint_trajectory_controller:
+      type: joint_trajectory_controller/JointTrajectoryController
+
+    joint_vel_trajectory_controller:
+      type: joint_trajectory_controller/JointTrajectoryController
+
+    scaled_joint_trajectory_controller:
+      type: ur_controllers/ScaledJointTrajectoryController
+
+    forward_velocity_controller:
+      type: velocity_controllers/JointGroupVelocityController
+
+    forward_position_controller:
+      type: position_controllers/JointGroupPositionController
+
+    ur_configuration_controller:
+      type: ur_controllers/URConfigurationController
+
+    tool_contact_controller:
+      type: ur_controllers/ToolContactController
+
+    gripper_controller:
+      type: position_controllers/GripperActionController
+
+    admittance_controller:
+      type: admittance_controller/AdmittanceController
+
+
+speed_scaling_state_broadcaster:
+  ros__parameters:
+    state_publish_rate: 100.0
+
+
+force_torque_sensor_broadcaster:
+  ros__parameters:
+    sensor_name: ft_sensor
+    state_interface_names:
+      - force.x
+      - force.y
+      - force.z
+      - torque.x
+      - torque.y
+      - torque.z
+    frame_id: wrist_3_link-tool0_fixed_joint
+    topic_name: ft_data
+
+
+joint_trajectory_controller:
+  ros__parameters:
+    joints:
+      - shoulder_pan_joint
+      - shoulder_lift_joint
+      - elbow_joint
+      - wrist_1_joint
+      - wrist_2_joint
+      - wrist_3_joint
+    command_interfaces:
+      - position
+    state_interfaces:
+      - position
+      - velocity
+    state_publish_rate: 100.0
+    action_monitor_rate: 20.0
+    allow_partial_joints_goal: false
+    constraints:
+      stopped_velocity_tolerance: 0.2
+      goal_time: 0.0
+      shoulder_pan_joint: { trajectory: 0.2, goal: 0.1, state_tolerance: 0.3 }
+      shoulder_lift_joint: { trajectory: 0.2, goal: 0.1, state_tolerance: 0.3 }
+      elbow_joint: { trajectory: 0.2, goal: 0.1, state_tolerance: 0.3 }
+      wrist_1_joint: { trajectory: 0.2, goal: 0.1, state_tolerance: 0.3 }
+      wrist_2_joint: { trajectory: 0.2, goal: 0.1, state_tolerance: 0.3 }
+      wrist_3_joint: { trajectory: 0.2, goal: 0.1, state_tolerance: 0.3 }
+    path_tolerance:
+      shoulder_pan_joint: 0.5
+      shoulder_lift_joint: 0.5
+      elbow_joint: 0.5
+      wrist_1_joint: 0.5
+      wrist_2_joint: 0.5
+      wrist_3_joint: 0.5
+    gains:
+      shoulder_pan_joint:
+        ff_velocity_scale: 0.1
+      shoulder_lift_joint:
+        ff_velocity_scale: 0.1
+      elbow_joint:
+        ff_velocity_scale: 0.1
+      wrist_1_joint:
+        ff_velocity_scale: 0.1
+      wrist_2_joint:
+        ff_velocity_scale: 0.1
+      wrist_3_joint:
+        ff_velocity_scale: 0.1
+
+
+joint_vel_trajectory_controller:
+  ros__parameters:
+    joints:
+      - shoulder_pan_joint
+      - shoulder_lift_joint
+      - elbow_joint
+      - wrist_1_joint
+      - wrist_2_joint
+      - wrist_3_joint
+    command_interfaces:
+      - velocity
+    state_interfaces:
+      - position
+      - velocity
+    state_publish_rate: 100.0
+    action_monitor_rate: 20.0
+    allow_partial_joints_goal: false
+    constraints:
+      stopped_velocity_tolerance: 0.2
+      goal_time: 0.0
+      shoulder_pan_joint: { trajectory: 0.2, goal: 0.1 }
+      shoulder_lift_joint: { trajectory: 0.2, goal: 0.1 }
+      elbow_joint: { trajectory: 0.2, goal: 0.1 }
+      wrist_1_joint: { trajectory: 0.2, goal: 0.1 }
+      wrist_2_joint: { trajectory: 0.2, goal: 0.1 }
+      wrist_3_joint: { trajectory: 0.2, goal: 0.1 }
+    gains:
+      shoulder_pan_joint:
+        ff_velocity_scale: 0.1
+      shoulder_lift_joint:
+        ff_velocity_scale: 0.1
+      elbow_joint:
+        ff_velocity_scale: 0.1
+      wrist_1_joint:
+        ff_velocity_scale: 0.1
+      wrist_2_joint:
+        ff_velocity_scale: 0.1
+      wrist_3_joint:
+        ff_velocity_scale: 0.1
+
+scaled_joint_trajectory_controller:
+  ros__parameters:
+    joints:
+      - shoulder_pan_joint
+      - shoulder_lift_joint
+      - elbow_joint
+      - wrist_1_joint
+      - wrist_2_joint
+      - wrist_3_joint
+    command_interfaces:
+      - position
+    state_interfaces:
+      - position
+      - velocity
+    state_publish_rate: 100.0
+    action_monitor_rate: 20.0
+    allow_partial_joints_goal: false
+    constraints:
+      stopped_velocity_tolerance: 0.2
+      goal_time: 0.0
+      shoulder_pan_joint: { trajectory: 0.2, goal: 0.1 }
+      shoulder_lift_joint: { trajectory: 0.2, goal: 0.1 }
+      elbow_joint: { trajectory: 0.2, goal: 0.1 }
+      wrist_1_joint: { trajectory: 0.2, goal: 0.1 }
+      wrist_2_joint: { trajectory: 0.2, goal: 0.1 }
+      wrist_3_joint: { trajectory: 0.2, goal: 0.1 }
+
+forward_velocity_controller:
+  ros__parameters:
+    joints:
+      - shoulder_pan_joint
+      - shoulder_lift_joint
+      - elbow_joint
+      - wrist_1_joint
+      - wrist_2_joint
+      - wrist_3_joint
+    interface_name: velocity
+
+forward_position_controller:
+  ros__parameters:
+    joints:
+      - shoulder_pan_joint
+      - shoulder_lift_joint
+      - elbow_joint
+      - wrist_1_joint
+      - wrist_2_joint
+      - wrist_3_joint
+
+
+gripper_controller:
+  ros__parameters:
+    action_monitor_rate: 20.0
+    allow_stalling: false
+    goal_tolerance: 0.01
+    # default: true
+    joint: robotiq_85_left_knuckle_joint
+    # interface_name: position
+    use_effort_interface: false
+    use_speed_interface: false
+
+
+admittance_controller:
+  ros__parameters:
+    joints:
+      - shoulder_pan_joint
+      - shoulder_lift_joint
+      - elbow_joint
+      - wrist_1_joint
+      - wrist_2_joint
+      - wrist_3_joint
+    command_interfaces:
+      - position
+    state_interfaces:
+      - position
+      - velocity
+    chainable_command_interfaces:
+      - position
+      - velocity
+    kinematics:
+      plugin_name: kinematics_interface_kdl/KinematicsInterfaceKDL
+      plugin_package: kinematics_interface
+      base: base_link  # Assumed to be stationary
+      tip: tool0  # The end effector frame
+      alpha: 0.05
+    ft_sensor:
+      name: ft_sensor
+      frame: 
+        id: wrist_3_link-tool0_fixed_joint  # Wrench measurements are in this frame
+      filter_coefficient: 0.1
+    control:
+      frame:
+        id: wrist_3_link  # Admittance calcs (displacement etc) are done in this frame. Usually the tool or end-effector
+    fixed_world_frame:
+      frame:            # Gravity points down (neg. Z) in this frame (Usually: world or base_link)
+        id: base_link
+    gravity_compensation:
+      frame:
+        id: wrist_3_link
+      CoG:  # specifies the center of gravity of the end effector
+        pos:
+          - 0.0  # x
+          - 0.0  # y
+          - 0.0  # z
+        force: 15.  # mass * 9.81
+    admittance:
+      selected_axes:
+        - false  # x
+        - false  # y
+        - false  # z
+        - false  # rx
+        - false  # ry
+        - false  # rz
+      # Having ".0" at the end is MUST, otherwise there is a loading error
+      # F = M*a + D*v + S*(x - x_d)
+      mass:
+        - 8.0  # x
+        - 8.0  # y
+        - 8.0  # z
+        - 8.0  # rx
+        - 8.0  # ry
+        - 8.0  # rz
+      damping_ratio:  # damping can be used instead: zeta = D / (2 * sqrt( M * S ))
+        - 30.  # x
+        - 30.  # y
+        - 30.  # z
+        - 30.  # rx
+        - 30.  # ry
+        - 30.  # rz
+      stiffness:
+        - 60.  # x
+        - 60.  # y
+        - 60.  # z
+        - 60.  # rx
+        - 60.  # ry
+        - 60.  # rz
+    # general settings
+    enable_parameter_update_without_reactivation: true

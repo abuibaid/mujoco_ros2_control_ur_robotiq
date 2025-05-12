@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding='utf-8'?>
+<robot name="ur5e" xmlns:xacro="http://ros.org/wiki/xacro">
+
+    <xacro:arg name="initial_positions_file" default="$(find mujoco_ros2_ur)/config/initial_positions.yaml" />
+    <xacro:arg name="ros2_control_hardware_type" default="mujoco" />
+    <xacro:arg name="tf_prefix" default="" />
+
+
+    <link name="world" />
+    <!-- Import ur5e urdf file -->
+    <xacro:include filename="$(find mujoco_ros2_ur)/ur_description/urdf/ur5e/ur5e_macro.xacro" />
+    <xacro:ur5e name="ur5e" tf_prefix="$(arg tf_prefix)"  connected_to="world"  rpy="0 0 0"  xyz="0 -0.145 0.97"/>
+
+    <!-- Import ur5e ros2_control description -->
+    <xacro:include filename="$(find mujoco_ros2_ur)/ur_description/urdf/ur5e/ur5e.ros2_control.xacro" />
+    <xacro:include filename="$(find mujoco_ros2_ur)/ur_description/urdf/ur5e/robotiq.ros2_control.xacro" />
+
+    <xacro:ur5e_ros2_control name="UR5eFakeSystem" initial_positions_file="$(arg initial_positions_file)" ros2_control_hardware_type="$(arg ros2_control_hardware_type)" tf_prefix="$(arg tf_prefix)"/>
+    <xacro:robotiq_ros2_control name="RobotiqFakeSystem" initial_positions_file="$(arg initial_positions_file)" ros2_control_hardware_type="$(arg ros2_control_hardware_type)" tf_prefix="$(arg tf_prefix)"/>
+
+</robot>
