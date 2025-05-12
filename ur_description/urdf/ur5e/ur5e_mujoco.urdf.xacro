@@ -9,7 +9,7 @@
     <link name="world" />
     <!-- Import ur5e urdf file -->
     <xacro:include filename="$(find mujoco_ros2_ur)/ur_description/urdf/ur5e/ur5e_macro.xacro" />
-    <xacro:ur5e name="ur5e" tf_prefix="$(arg tf_prefix)"  connected_to="world"  rpy="0 0 0"  xyz="0 -0.145 0.97"/>
+    <xacro:ur5e name="ur5e" tf_prefix="$(arg tf_prefix)"  connected_to="world"  rpy="0 0 0"  xyz="0.0 0.0 0.1"/>
 
     <!-- Import ur5e ros2_control description -->
     <xacro:include filename="$(find mujoco_ros2_ur)/ur_description/urdf/ur5e/ur5e.ros2_control.xacro" />
