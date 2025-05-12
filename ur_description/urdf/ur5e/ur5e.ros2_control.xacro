@@ -20,114 +20,7 @@
           <plugin>mujoco_ros2_control/MujocoSystem</plugin>
         </xacro:if>
       </hardware>
-      <!-- <joint name="${tf_prefix}shoulder_pan_joint">
-        <xacro:if value="${ros2_control_hardware_type == 'mujoco'}">
-          <param name="position_kp">3000</param>
-          <param name="position_ki">1</param>
-          <param name="position_kd">100</param>
-          <param name="position_i_max">10000</param>
-          <command_interface name="position_pid" />
-        </xacro:if>
-        <xacro:unless value="${ros2_control_hardware_type == 'mujoco'}">
-          <command_interface name="velocity" />
-        </xacro:unless>
-        <state_interface name="position">
-          <param name="initial_value">${initial_positions['shoulder_pan_joint']}</param>
-        </state_interface>
-        <state_interface name="velocity">
-          <param name="initial_value">0.0</param>
-        </state_interface>
-      </joint>
-      <joint name="${tf_prefix}shoulder_lift_joint">
-        <xacro:if value="${ros2_control_hardware_type == 'mujoco'}">
-          <param name="position_kp">3000</param>
-          <param name="position_ki">1</param>
-          <param name="position_kd">100</param>
-          <param name="position_i_max">10000</param>
-          <command_interface name="position_pid" />
-        </xacro:if>
-        <xacro:unless value="${ros2_control_hardware_type == 'mujoco'}">
-          <command_interface name="velocity" />
-        </xacro:unless>
-        <state_interface name="position">
-          <param name="initial_value">${initial_positions['shoulder_lift_joint']}</param>
-        </state_interface>
-        <state_interface name="velocity">
-          <param name="initial_value">0.0</param>
-        </state_interface>
-      </joint>
-      <joint name="${tf_prefix}elbow_joint">
-        <xacro:if value="${ros2_control_hardware_type == 'mujoco'}">
-          <param name="position_kp">3000</param>
-          <param name="position_ki">1</param>
-          <param name="position_kd">100</param>
-          <param name="position_i_max">10000</param>
-          <command_interface name="position_pid" />
-        </xacro:if>
-        <xacro:unless value="${ros2_control_hardware_type == 'mujoco'}">
-          <command_interface name="velocity" />
-        </xacro:unless>
-        <state_interface name="position">
-          <param name="initial_value">${initial_positions['elbow_joint']}</param>
-        </state_interface>
-        <state_interface name="velocity">
-          <param name="initial_value">0.0</param>
-        </state_interface>
-      </joint>
-      <joint name="${tf_prefix}wrist_1_joint">
-        <xacro:if value="${ros2_control_hardware_type == 'mujoco'}">
-          <param name="position_kp">3000</param>
-          <param name="position_ki">1</param>
-          <param name="position_kd">100</param>
-          <param name="position_i_max">10000</param>
-          <command_interface name="position_pid" />
-        </xacro:if>
-        <xacro:unless value="${ros2_control_hardware_type == 'mujoco'}">
-          <command_interface name="velocity" />
-        </xacro:unless>
-        <state_interface name="position">
-          <param name="initial_value">${initial_positions['wrist_1_joint']}</param>
-        </state_interface>
-        <state_interface name="velocity">
-          <param name="initial_value">0.0</param>
-        </state_interface>
-      </joint>
-      <joint name="${tf_prefix}wrist_2_joint">
-        <xacro:if value="${ros2_control_hardware_type == 'mujoco'}">
-          <param name="position_kp">3000</param>
-          <param name="position_ki">1</param>
-          <param name="position_kd">100</param>
-          <param name="position_i_max">10000</param>
-          <command_interface name="position_pid" />
-        </xacro:if>
-        <xacro:unless value="${ros2_control_hardware_type == 'mujoco'}">
-          <command_interface name="velocity" />
-        </xacro:unless>
-        <state_interface name="position">
-          <param name="initial_value">${initial_positions['wrist_2_joint']}</param>
-        </state_interface>
-        <state_interface name="velocity">
-          <param name="initial_value">0.0</param>
-        </state_interface>
-      </joint>
-      <joint name="${tf_prefix}wrist_3_joint">
-        <xacro:if value="${ros2_control_hardware_type == 'mujoco'}">
-          <param name="position_kp">3000</param>
-          <param name="position_ki">1</param>
-          <param name="position_kd">100</param>
-          <param name="position_i_max">10000</param>
-          <command_interface name="position_pid" />
-        </xacro:if>
-        <xacro:unless value="${ros2_control_hardware_type == 'mujoco'}">
-          <command_interface name="velocity" />
-        </xacro:unless>
-        <state_interface name="position">
-          <param name="initial_value">${initial_positions['wrist_3_joint']}</param>
-        </state_interface>
-        <state_interface name="velocity">
-          <param name="initial_value">0.0</param>
-        </state_interface>
-      </joint> -->
+    
 
 
       <xacro:macro name="configure_joint" params="joint_name initial_positions joint_name_wo_prefix">
@@ -158,7 +51,7 @@
       <xacro:configure_joint joint_name="${tf_prefix}wrist_2_joint"      initial_positions="${initial_positions}" joint_name_wo_prefix="wrist_2_joint"/>
       <xacro:configure_joint joint_name="${tf_prefix}wrist_3_joint"      initial_positions="${initial_positions}" joint_name_wo_prefix="wrist_3_joint"/>
 
-      <sensor name="${tf_prefix}ft_sensor">
+      <sensor name="${tf_prefix}motor_fts">
         <state_interface name="force.x" />
         <state_interface name="force.y" />
         <state_interface name="force.z" />

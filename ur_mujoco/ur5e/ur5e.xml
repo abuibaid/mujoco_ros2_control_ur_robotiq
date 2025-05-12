@@ -304,8 +304,8 @@
   </equality>
 
   <sensor>
-    <force name="ft_sensor_force" site="wrist_3_site" />
-    <torque name="ft_sensor_torque" site="wrist_3_site" />
+    <force name="motor_force" site="wrist_3_site" />
+    <torque name="motor_torque" site="wrist_3_site" />
     <force name="right_finger" site="robotiq_85_finger_right_site"/>
     <force name="left_finger" site="robotiq_85_finger_left_site"/>
     <!-- <touch name="right_finger" site="robotiq_85_finger_right_site"/> -->
