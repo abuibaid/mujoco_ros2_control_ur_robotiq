@@ -24,7 +24,9 @@
 
       <xacro:macro name="configure_joint" params="joint_name mimicing_joint multiplier">
         <joint name="${joint_name}">
+          <!-- Set PID or position interface depending on configuration -->
           <xacro:if value="${using_position_pid}">
+            <!-- Use position_pid interface -->
             <param name="position_kp">3000</param>
             <param name="position_ki">1</param>
             <param name="position_kd">100</param>
@@ -32,18 +34,19 @@
             <command_interface name="position_pid" />
           </xacro:if>
           <xacro:unless value="${using_position_pid}">
-            <command_interface name="position" />
+            <!-- Non-PID interface depends on hardware type -->
+            <xacro:if value="${ros2_control_hardware_type == 'mujoco'}">
+              <command_interface name="position" />
+            </xacro:if>
+            <xacro:unless value="${ros2_control_hardware_type == 'mujoco'}">
+              <!-- Also apply PID gains even if not using full PID controller -->
+              <param name="position_kp">3000</param>
+              <param name="position_ki">1</param>
+              <param name="position_kd">100</param>
+              <param name="position_i_max">10000</param>
+              <command_interface name="position_pid" />
+            </xacro:unless>
           </xacro:unless>
-          <xacro:unless value="${ros2_control_hardware_type == 'mujoco'}">
-            <param name="position_kp">3000</param>
-            <param name="position_ki">1</param>
-            <param name="position_kd">100</param>
-            <param name="position_i_max">10000</param>
-            <command_interface name="position_pid" />
-          </xacro:unless>
-          <xacro:if value="${ros2_control_hardware_type == 'mujoco'}">
-            <command_interface name="position" />
-          </xacro:if>
           <param name="mimic">${mimicing_joint}</param>
           <param name="multiplier">${multiplier}</param>
           <state_interface name="position">
