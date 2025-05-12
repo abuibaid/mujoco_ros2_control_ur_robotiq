@@ -39,4 +39,5 @@ source install/setup.bash
 ```bash
 ros2 launch mujoco_ros2_ur ur5e.launch.py
 ```
+## Image
 ![image](https://github.com/user-attachments/assets/34622c6b-ce53-486c-a94f-6e5758d3a89c)
