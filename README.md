@@ -11,9 +11,9 @@ This repository provides a working simulation setup for a UR5e robot with a Robo
 
 ## Requirements
 
-- ROS 2 (tested with Humble)
-- MuJoCo 3.x
-- `mujoco_ros2_control`
+- [ROS2](https://docs.ros.org/) (tested with Humble)
+- [MuJoCo 3.x](https://github.com/google-deepmind/mujoco) 
+- [mujoco_ros2_control](https://github.com/moveit/mujoco_ros2_control)
 
 
 ## Installation
