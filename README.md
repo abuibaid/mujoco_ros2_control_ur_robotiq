@@ -19,9 +19,9 @@ This repository provides a working simulation setup for a UR5e robot with a Robo
 ## Installation
 ### Clone the repository
 ```bash
-mkdir -p ~/mujoco_ros2_ws/src/mujoco_ros2_ur
-cd ~/mujoco_ros2_ws/src/mujoco_ros2_ur
-git clone https://github.com/abuibaid/mujoco_ros2_control_ur_robotiq.git
+mkdir -p ~/mujoco_ros2_ws/src
+cd ~/mujoco_ros2_ws/src
+git clone https://github.com/abuibaid/mujoco_ros2_ur.git
 cd ..
 git clone https://github.com/moveit/mujoco_ros2_control/tree/main
 ```
